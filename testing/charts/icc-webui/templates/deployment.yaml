@@ -32,6 +32,11 @@ spec:
                 secretKeyRef:
                   name: oracle-credentials
                   key: ORACLE_PASSWORD
+            - name: FERNET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: icc-webui-fernet
+                  key: FERNET_KEY  
           command: ["sh", "-c"]
           args:
             - |
