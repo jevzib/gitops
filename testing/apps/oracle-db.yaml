@@ -10,8 +10,8 @@ spec:
     path: testing/charts/oracle-db
     targetRevision: main
   destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
+    name: kind-testing
+    namespace: icc
   syncPolicy:
     automated:
       prune: true
