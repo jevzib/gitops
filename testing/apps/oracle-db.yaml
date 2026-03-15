@@ -10,7 +10,7 @@ spec:
     path: testing/charts/oracle-db
     targetRevision: main
   destination:
-    name: kind-testing
+    server: https://kubernetes.default.svc
     namespace: icc
   syncPolicy:
     automated:
