@@ -10,7 +10,7 @@ spec:
     path: testing/apps
     targetRevision: main
   destination:
-    name: kind-testing
+    name: https://kubernetes.default.svc
     namespace: argocd
   syncPolicy:
     automated:
