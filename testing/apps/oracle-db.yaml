@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oracle-db
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:jevzib/gitops.git
+    path: testing/charts/oracle-db
+    targetRevision: main
+  destination:
+    name: kind-testing
+    namespace: icc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

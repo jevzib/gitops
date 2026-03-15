@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "icc-webui.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "icc-webui.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "icc-webui.name" . }}
+    spec:
+      containers:
+        - name: icc-webui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: {{ .Values.env.DJANGO_SETTINGS_MODULE }}
+            - name: ORACLE_HOST
+              value: {{ .Values.oracle.host }}
+            - name: ORACLE_PORT
+              value: "{{ .Values.oracle.port }}"
+            - name: ORACLE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: oracle-credentials
+                  key: ORACLE_USER
+            - name: ORACLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oracle-credentials
+                  key: ORACLE_PASSWORD
+          command: ["sh", "-c"]
+          args:
+            - |
+              python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000
+          ports:
+            - containerPort: 8000
+
