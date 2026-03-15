@@ -13,6 +13,8 @@ env:
   DJANGO_SETTINGS_MODULE: "icc_webui.settings"
   DJANGO_ALLOWED_HOSTS: "icc-webui.local,localhost,127.0.0.1"
 
+extraEnv: []
+
 ingress:
   enabled: true
   host: icc-webui.local

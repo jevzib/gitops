@@ -16,6 +16,10 @@ spec:
         - name: icc-webui
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
+            {{- range .Values.extraEnv }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
             - name: DJANGO_SETTINGS_MODULE
               value: {{ .Values.env.DJANGO_SETTINGS_MODULE }}
             - name: ORACLE_HOST
