@@ -9,11 +9,10 @@ spec:
     name: kind-testing
     namespace: icc
   source:
-    repoURL: http://github.com/jevzib/icc-webui.git
+    repoURL: https://github.com/jevzib/icc-webui.git
     path: testing/charts/icc-webui
     targetRevision: main
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
