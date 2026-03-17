@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: serviceapp
+  namespace: ns1-prod-s1
+  labels:
+    app.kubernetes.io/name: serviceapp
+    app.kubernetes.io/part-of: serviceapp
+    where: non-k8s
+spec:
+  type: ExternalName
+  externalName: ns1-prod-s1-serviceapp-host.mykube-intern.io
+  ports:
+    - name: http
+      port: 8081
+    - name: health
+      port: 11281

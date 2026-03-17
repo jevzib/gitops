@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns1-prod-s1
+  labels: 
+    prj.mykube.io/name: ns1
+    prj.mykube.io/id: "NS01"
+    environment.mykube.io/selector: s1
+    environment.mykube.io/stage: prod
